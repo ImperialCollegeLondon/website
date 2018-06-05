@@ -89,7 +89,7 @@
 				border-left-width: 2px;
 				border-style: solid;
 				border-top-width: 2px;
-				text-align: center;
+				text-align: left;
 
 				> :last-child {
 					margin-bottom: 0;
@@ -138,7 +138,7 @@
 					}
 
 					.image {
-						max-width: 25rem;
+						max-width: 10rem;
 						margin-left: auto;
 						margin-right: auto;
 					}
