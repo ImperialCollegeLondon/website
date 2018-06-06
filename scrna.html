@@ -11,6 +11,15 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+		<script type="text/javascript" async
+		src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/latest.js?config=TeX-MML-AM_CHTML">
+		</script>
+		<script type="text/x-mathjax-config">
+		MathJax.Hub.Config({
+			tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+			});
+		</script>
+		<script type="text/javascript" async src="path-to-mathjax/MathJax.js?config=TeX-AMS_CHTML"></script>
 	</head>
 	<body class="is-loading">
 
@@ -34,19 +43,114 @@
 				</nav>
 
 				<!-- Main -->
-					<div id="main">
-
-						<!-- Post -->
+					<div id="main" class="alt">
+							<!-- Featured Post -->
 							<section class="post">
-								<header class="major">
-									<h1>Analysis of single-cell RNA-seq mitochondrial DNA data</h1>
-									<p>Aenean ornare velit lacus varius enim ullamcorper proin aliquam<br />
-									facilisis ante sed etiam magna interdum congue. Lorem ipsum dolor<br />
-									amet nullam sed etiam veroeros.</p>
-								</header>
-								<div class="image main"><img src="images/pic01.jpg" alt="" /></div>
-								<p>Donec eget ex magna. Interdum et malesuada fames ac ante ipsum primis in faucibus. Pellentesque venenatis dolor imperdiet dolor mattis sagittis. Praesent rutrum sem diam, vitae egestas enim auctor sit amet. Pellentesque leo mauris, consectetur id ipsum sit amet, fergiat. Pellentesque in mi eu massa lacinia malesuada et a elit. Donec urna ex, lacinia in purus ac, pretium pulvinar mauris. Nunc lorem mauris, fringilla in aliquam at, euismod in lectus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Curabitur sapien risus, commodo eget turpis at, elementum convallis enim turpis, lorem ipsum dolor sit amet nullam.</p>
-								<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis dapibus rutrum facilisis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Etiam tristique libero eu nibh porttitor fermentum. Nullam venenatis erat id vehicula viverra. Nunc ultrices eros ut ultricies condimentum. Mauris risus lacus, blandit sit amet venenatis non, bibendum vitae dolor. Nunc lorem mauris, fringilla in aliquam at, euismod in lectus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. In non lorem sit amet elit placerat maximus. Pellentesque aliquam maximus risus. Donec eget ex magna. Interdum et malesuada fames ac ante ipsum primis in faucibus. Pellentesque venenatis dolor imperdiet dolor mattis sagittis. Praesent rutrum sem diam, vitae egestas enim auctor sit amet. Pellentesque leo mauris, consectetur id ipsum.</p>
+								<div class="inner">
+									<header class="major">
+										<h1>Single-cell RNA-seq analysis</h1></header>
+										<h2>Background</h2>
+									<p>RNA-sequencing (RNA-seq) uses next-generation sequencing to identify and quantify the RNA that is present enabling gene expression levels to be quantified <a href=references.html>(Ramsköld et al., 2012)</a>. RNA-seq can be performed at the single cell level in single-cell RNA-seq (scRNA-seq) which was developed by <a href=references.html>Tang et al., 2009</a>. Unlike bulk RNA-seq, in which individual cell signals are averaged out, scRNA-seq enables differences in the transcriptomes of cells to be identified <a href=references.html>(Shapiro, Biezuner & Linnarsson, 2013)</a>. Therefore, scRNA-seq is particularly valuable when studying cell-specific transcriptome changes, for example the ageing response in mitochondria <a href=references.html>(Shapiro, Biezuner & Linnarsson, 2013)</a>.</p>
+									<p>scRNA-seq can be applied to mitochondria to identify and quantify the levels of heteroplasmy. Furthermore, by comparing the transcriptomes of cells with different levels of heteroplasmy, an insight can be gained into how heteroplasmy affects the expression of mitochondrial and nuclear genes. Following scRNA-seq, various processing steps must be performed on the raw data in order to reach meaningful conclusions. Batch effects, which occur due to repeating experimental procedures, must be removed. Batch effects can arise due to the experiment being performed with different reagents, experimenters, or simply at a different time or on a different day. It is essential that batch effects are removed as they can confound the biological signal of interest, preventing patterns or differences from being identified <a href=references.html>(Kiselev et al., 2018)</a>.</p>
+									<h2>Methods</h2>
+									<h3>Data</h3>
+									<p>The data was obtained from 384 Myoclonic epilepsy with ragged-red fibers (MERRF) fibroblast cells. These cells were categorised into the following biological conditions according to their MERRF genotype and TMRM measurements: wild type with low TMRM; wild type with high TMRM; mutant with low TMRM; mutant with high TMRM. The data was collected in four batches, each of which contained every biological condition. Figure 3 is a schematic to represent the experimental set-up. Two different scRNA-seq protocols were used. Plates 1 and 3 (Lane 59) were analysed using SmartSeq2 <a href=references.html>(Picelli et al., 2014)</a> and plates 2 and 4 (Lane 60) were analysed using G&T-seq <a href=references.html>(Macaulay et al., 2015)</a>. Figure 3 shows the experiment set-up. The output data was in the form of an expression matrix in which the columns correspond to cells and the rows correspond to genes.</p>
+									<figure>
+										<center>
+										<a class="image-link" href="images/crop_set.jpeg" alt="<strong>Figure 3.">
+											<img src="images/crop_set.jpeg" style="width: 65%;"></a>
+											<figcaption class="img-comment" style="margin: auto; text-align: center;"><font size="-1"><strong>Figure 3: </strong>A representation of the experimental setup from which the data was obtained. Each circle represents a well, each of which contains one cell. Cells are coloured according to their TMRM uptake and mutant/wild type phenotype.</font></figcaption>
+										</center>
+									</figure>
+									<h3>Quality control</h3>
+									<p>The output expression matrix was analysed using various packages from the Bioconductor software in R <a href=references.html>(R Foundation for Statistical Computing, 2016; Huber et al., 2015)</a>. Firstly, genes were removed that were not expressed in any cells. Cells that contained too few reads were removed as the cells may have been broken or even absent from the well. A minimum threshold of 500,000 reads was selected based on analysis of the distribution of reads per cell. In order to have a good representation of the transcriptome, cells containing too few unique genes were removed. In this case, cells with less than 4000 unique genes were removed. Finally, genes were removed that were expressed in too few cells; at least two cells were required to contain more than one transcript of the gene.</p>
+									<h3>Normalisation</h3>
+									<p>The $scran$ package in Bioconductor was used to normalise the library size. Library size must be normalised as the number of reads derived from individual cells may differ substantially. $scran$ is a normalisation method designed specifically for scRNA-seq data. It pools cells together and calculates a normalisation factor for the sum of each pool. </p>
+									<h3>Removal of batch effects</h3>
+									<p>Various methods for removing batch effects were tested, a summary of which is shown below in table 1. </p>
+									<figcaption class="img-comment" style="text-align: center; margin: auto;"><font size="-1">
+							<strong>Table 1. </strong>Descriptions of the batch effect correction methods used.</font>
+						</figcaption>
+                    <table class="table table-bordered table-hover table-striped table-condensed center table-fixed" style="background-color: white; float:center;">
+							<thead><tr><th><i><u>Method name</i></u></th><th><i><u>Approach</i></u></th></tr></thead>
+						<tbody>
+						 <tr><td>RUVg</td><td>Uses negative control genes that are not differentially expressed,<br> i.e. ERCC spike-ins <a href=references.html>(Risso et al., 2014)</a>.</td></tr>
+						 <tr><td>RUVs</td><td>Uses technical replicates for which the covariates of interest are<br> constant <a href=references.html>(Risso et al., 2014)</a>.</td></tr>
+						 <tr><td>ComBat</td><td>An empirical Bayes method in which data is standardized so<br> genes have similar overall mean and variance <a href=references.html>(Liu & Markatou, 2016)</a>.<br> Requires balanced experimental design.</td></tr>
+						 <tr><td>General linear model (GLM)</td><td>Generalization of a multiple linear regression model. </td></tr>
+						</tbody>
+					</table>
+					<p>RUVg and RUVs were performed twice with different values of $k$ ($k = 1, k = 10$), where $k$ represents the number of factors of unwanted variation. These variations of the RUVg and RUVs methods are herein referred to as RUVg1, RUVg10, RUVs1 and RUVs10. Following removal of batch effects by all of the methods in table 1, their effectiveness was analysed and compared using principle component analysis (PCA) and density plots showing the variance explained by each of the following variables: TMRM, lane ID, total features, total counts and plate ID. A brief explanation of each variable can be found in table 2. </p>
+					<figcaption class="img-comment" style="text-align: center; margin: auto;"><font size="-1">
+			<strong>Table 2. </strong>Descriptions of the variable that are potentially responsible for some the variation in gene expression observed in the scRNA-seq dataset.</font>
+		</figcaption>
+						<table class="table table-bordered table-hover table-striped table-condensed center table-fixed" style="background-color: white; float:center;">
+			<thead><tr><th><i><u>Variable name</i></u></th><th><i><u>Description</i></u></th></tr></thead>
+		<tbody>
+		 <tr><td>TMRM ($TMRM$)</td><td>A cell permeant dye that accumulates in mitochondria with intact<br> membrane potentials, enabling it to be used as a proxy for<br> mitochondrial function and heteroplasmy. Cells were placed into<br> wells according to their TMRM category and genotype.</td></tr>
+		 <tr><td>Lane ID ($LaneID$)</td><td>The scRNA-seq protocol that was performed. Either G&T-seq or SmartSeq2. </td></tr>
+		 <tr><td>Total features ($total\_features$)</td><td>The total number of unique genes present in an individual cell.</td></tr>
+		 <tr><td>Total counts ($total\_counts$)</td><td>The total number of reads present in a cell from all genes, i.e. if the gene<br> was expressed in multiple copies.</td></tr>
+		 <tr><td>Plate ID ($PlateID$)</td><td>See figure 3. Each plate contained all four TMRM conditions. Plate ID <br>corresponds to the different batches.</td></tr>
+		 <tr><td>Individual ID ($IndividualID$)</td><td>Whether the cell was wild type or mutant for the MERRF mutation.</td></tr>
+
+		</tbody>
+	</table>
+	<h2>Results</h2>
+	Figures (?? - ??) are density plots showing the variance explained by each variable for every batch effect correction method (see table 1). These plots are generated by calculating Pearson’s correlation coefficient squared (R<sup>2</sup>) for each variable (see table 2) for each cell. Then, for each variable, all of the values of R<sup>2</sup> are plotted as a density plot in which the peaks correspond to high concentration specific of that R<sup>2</sup> value. Therefore, narrow, tall peaks represent high concordance in R<sup>2</sup> values amongst the cells analysed.
+
+</div>
+<div id="myCarousel" class="carousel slide" data-ride="carousel">
+  <!-- Indicators -->
+  <ol class="carousel-indicators">
+    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+    <li data-target="#myCarousel" data-slide-to="1"></li>
+    <li data-target="#myCarousel" data-slide-to="2"></li>
+  </ol>
+
+  <!-- Wrapper for slides -->
+  <div class="carousel-inner">
+    <div class="item active">
+      <img src="images/pic01.jpg" alt="Chania">
+      <div class="carousel-caption">
+        <h3>Los Angeles</h3>
+        <p>LA is always so much fun!</p>
+      </div>
+    </div>
+
+    <div class="item">
+      <img src="images/pic01.jpg" alt="Chicago">
+      <div class="carousel-caption">
+        <h3>Chicago</h3>
+        <p>Thank you, Chicago!</p>
+      </div>
+    </div>
+
+    <div class="item">
+      <img src="images/pic01.jpg" alt="New York">
+      <div class="carousel-caption">
+        <h3>New York</h3>
+        <p>We love the Big Apple!</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Left and right controls -->
+  <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+    <span class="glyphicon glyphicon-chevron-left"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="right carousel-control" href="#myCarousel" data-slide="next">
+    <span class="glyphicon glyphicon-chevron-right"></span>
+    <span class="sr-only">Next</span>
+  </a>
+</div>
+
+
+
+
+
+
 							</section>
 
 					</div>
