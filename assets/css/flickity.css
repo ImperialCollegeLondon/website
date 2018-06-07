@@ -80,15 +80,22 @@ https://flickity.metafizzy.co
 
 .flickity-prev-next-button {
   top: 50%;
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
+  width: 70px;
+  height: 70px;
+  border-radius: 70%;
+  background:#333;
   /* vertically center */
   transform: translateY(-50%);
 }
+.flickity-prev-next-button:hover {
+  background: #F90;
+}
+.flickity-prev-next-button .arrow {
+  fill: white;
+}
 
-.flickity-prev-next-button.previous { left: 10px; }
-.flickity-prev-next-button.next { right: 10px; }
+.flickity-prev-next-button.previous { left: -20px; }
+.flickity-prev-next-button.next { right: -20px; }
 /* right to left */
 .flickity-rtl .flickity-prev-next-button.previous {
   left: auto;
@@ -144,7 +151,7 @@ https://flickity.metafizzy.co
 
 
 .carousel {
-  background: #EEE;
+  background: #FAFAFA;
 }
 
 .carousel-cell {
