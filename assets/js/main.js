@@ -129,7 +129,7 @@
 			$('.scrolly').scrolly();
 
 		// Background.
-			$wrapper._parallax(0.925);
+			$wrapper._parallax(50);
 
 		// Nav Panel.
 
@@ -230,8 +230,8 @@
 
 						$main.scrollex({
 							mode: 'bottom',
-							top: '25vh',
-							bottom: '-50vh',
+							top: '5vh',
+							bottom: '-500vh',
 							enter: function() {
 								$intro.addClass('hidden');
 							},
