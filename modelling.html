@@ -12,6 +12,15 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+		<script type="text/javascript" async
+		src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/latest.js?config=TeX-MML-AM_CHTML">
+		</script>
+		<script type="text/x-mathjax-config">
+		MathJax.Hub.Config({
+			tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+			});
+		</script>
+		<script type="text/javascript" async src="path-to-mathjax/MathJax.js?config=TeX-AMS_CHTML"></script>
 	</head>
 	<body class="is-loading">
 
@@ -35,15 +44,36 @@
 				</nav>
 
 				<!-- Main -->
-					<div id="main">
+					<div id="main" class="alt">
 
 						<!-- Post -->
 							<section class="post">
-								<header class="major">
-									<h1>Modelling of mitochondrial DNA populations</h1>
-									<p>Aenean ornare velit lacus varius enim ullamcorper proin aliquam<br />
-									facilisis ante sed etiam magna interdum congue. Lorem ipsum dolor<br />
-									amet nullam sed etiam veroeros.</p>
+								<div class="inner">
+									<header class="major">
+										<h1>Modelling mtDNA copy number</h1></header>
+										<h2>Background</h2>
+									<p>Having an understanding of the mechanisms that determine cellular levels of mtDNA is important for understanding and treating mitochondrial disease, however it is difficult to measure these mechanisms experimentally without damaging the cells <a href=references.html>(Chinnery & Samuels, 1999)</a>. Mathematical approaches can be powerful alternative routes for investigating the longitudinal changes occurring in mtDNA heteroplasmy over time <a href=references.html>(Chinnery & Samuels, 1999; Johnston & Jones, 2016)</a>.</p>
+									<p>Comparing the trajectories predicted by different mathematical models is valuable if the trajectories are sufficiently different. Empirical data can be compared with model predictions and the model underlying the system from which the data has been obtained can be identified. By doing this, insights can be gained into the dynamics of the system and the mechanisms driving changes in mtDNA copy number. By understanding the model underlying a healthy system, it is possible that perturbations, for example caused by cancerous tumours, can be identified. </p>
+									<p>Two models of mtDNA replication and degradation, the linear feedback control model <a href=references.html>(Hoitzing et al., 2017)</a> and the relaxed replication model <a href=references.html>(Johnston & Jones, 2016)</a>, were compared in order to identify whether the trajectories of population changes that they predicted were sufficiently different to one another. </p>
+									<h2>Methods</h2>
+									<h3>The Linear Feedback Control model</h3>
+									<p>	The linear feedback control (LFC) model assumes that the mitochondrial population is under homeostatic control and that the replication rate of mtDNA changes with deviations of the effective mtDNA population size away from the desired value. The degradation rate $&mu;$ of mtDNA is constant with feedback control being achieved through the replication rate $&lambda; = &lambda;(w,m)$. The LFC model does not distinguish between different mtDNA types, i.e. mutant or wild type, with respect to their fitness. The LFC model uses various parameters, a summary of which is shown in table 3. See figure 7 for a diagrammatic representation of both models. </p>
+									<h3>The Relaxed Replication model</h3>
+									<p>The relaxed replication (RR) model assumes a continuous turnover of mtDNA in post-mitotic cells <a href=references.html>(Capps, Samuels & Chinnery, 2003; Chinnery & Samuels, 1999)</a>. mtDNA degradation is modelled as a stochastic Poisson process with rate $1/&tau;$ (Johnston & Jones, 2016). The replication rate of mtDNA is also modelled as a stochastic process of rate $&lambda;(w,m)$ which is a deterministic function of w and m. At each time step $&Delta;t$, the value of $&lambda;(w,m)$ is calculated as $&Delta;t&lambda;(w,m)$ for determining how many mtDNA are added to the population. The genetic properties of the mtDNA that are added to the population are stochastic but the physical properties, such as the total copy number, are deterministic. Similarly to the LFC model, neither mutants nor wild types have a selective advantage in the RR model. The parameters used in the RR model are described in table 3 and figure 7 is a schematic of the model.</p>
+									<figure>
+										<center>
+										<a class="image-link" href="images/models.png" alt="<strong>Figure 7.">
+											<img src="images/models.png" style="width: 65%;"></a>
+											<figcaption class="img-comment" style="margin: auto; text-align: center;"><font size="-1"><strong>Figure 7: </strong>The linear feedback control (LFC) and relaxed replication (RR) models. See table 3 for an explanation of all parameters. Reactions [1] and [3] represent birth/replication processes for LFC and RR models, respectively. The rates (&lambda;<sub>L</sub> and &lambda;<sub>R</sub>) apply to birth of mutant and wild type mtDNA. Reactions [2] and [4] represent death/degradation events for LFC and RR models, respectively. Again, the rates ($&mu;$ and $1/&tau;$) are for death of mutant and wild type mtDNA. </font></figcaption>
+										</center>
+									</figure>
+
+
+
+
+
+
+
 								</header>
 								<center>
 									<div id="scatter" >
