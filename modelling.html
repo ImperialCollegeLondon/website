@@ -67,6 +67,31 @@
 											<figcaption class="img-comment" style="margin: auto; text-align: center;"><font size="-1"><strong>Figure 7: </strong>The linear feedback control (LFC) and relaxed replication (RR) models. See table 3 for an explanation of all parameters. Reactions [1] and [3] represent birth/replication processes for LFC and RR models, respectively. The rates (&lambda;<sub>L</sub> and &lambda;<sub>R</sub>) apply to birth of mutant and wild type mtDNA. Reactions [2] and [4] represent death/degradation events for LFC and RR models, respectively. Again, the rates ($&mu;$ and $1/&tau;$) are for death of mutant and wild type mtDNA. </font></figcaption>
 										</center>
 									</figure>
+									<p>
+									<figcaption class="img-comment" style="text-align: center; margin: auto;"><font size="-1">
+										<strong>Table 3. </strong>Descriptions of parameters used in both models.</font>
+									</figcaption>
+                    <table class="table table-bordered table-hover table-striped table-condensed center table-fixed" style="background-color: white; float:center;">
+							<thead><tr><th><i><u>Parameter</i></u></th><th><i><u>Function and value</i></u></th></tr></thead>
+						<tbody>
+						 <tr><td><u><i>LFC model</i></u></td></tr>
+						 <tr><td>$&mu;$</td><td>Degradation/death rate. Set to $0.2$.</td></tr>
+						 <tr><td>N<sub>SS</sub></td><td>Number of mtDNA in the steady state. Set to $1000$.</td></tr>
+						 <tr><td>$b$</td><td>Controls how tightly stochastic trajectories are constrained around the steady state. Set to $10$<sup>-4</sup></td></tr>
+						 <tr><td>$&delta;$</td><td>Strength of detecting mutants, enables differential feedback contributions of mutant or wild type species. Set to $1$.</td></tr>
+						 <tr><td><u><i>RR model</i></u></td></tr>
+						 <tr><td>$&mu;$</td><td>Used to obtain $&tau;$ as $&tau;=1/&mu;$. Set to $0.2$.</td></tr>
+						 <tr><td>$&tau;$</td><td>$&tau;$<sup>-1</sup> is the degradation rate. Set to $5$.</td></tr>
+						 <tr><td>$&gamma;$</td><td>Analagous to $&delta;$ in the LFC model. Set to $1$.</td></tr>
+						 <tr><td>$&alpha;$</td><td>Controls rate of replication. Set to $2$.</td></tr>
+						 <tr><td>$w$<sub>opt</sub></td><td>Target copy number of mtDNA. Set to $1000$.</td></tr>
+						</tbody>
+					</table>
+					<h3>Model simulation</h3>
+					<p>Both models were simulated using the Gillespie Stochastic Simulation Algorithm (GSSA). The GSSA is a stochastic stimulation approach in which one reaction is executed at a time <a href=references.html>(Gillespie, 1977)</a>.  The GSSA seeks to answer the two following questions in order to simulate the system: when will the next reaction occur; and what kind of reaction will it be? It aims to answer these questions by introducing the reaction probability density function $P(&tau;,&mu;)$ which is defined as: <li>$P(&tau;,&mu;)d&tau; &cong;$ the probability that given the state ($X$<sub>1</sub>,…,$X$<sub>N</sub>) at time $t$, the next reaction in $V$ will occur in the infinitesimal time interval ($t +  &tau;, t + &tau; + d&tau;$), and will be an $R$<sub>&mu;</sub> reaction <a href=references.html>(Gillespie, 1977)</a>.</li></p><p> The probability of each reaction occurring is calculated based on the reaction’s hazard, which depends on the number of reactant molecules in that specific reaction and in the system overall. The time interval until the next reaction is calculated by generating a uniform random number <a href=references.html>(Gillespie, 1977)</a>. This process of stochastically selecting the next reaction and the time interval is repeated until the maximum time ($TMAX$) has elapsed.</p>
+					<p>Both models were simulated in this way for $100$ iterations with the initial conditions of $20$ copies of wild type mtDNA and $0$ copies of mutant mtDNA. At $t=100$ ($t1$) the algorithm returned the wild type mtDNA copy number, as well at either $t=100.25, t=100.5, t=101, t=102, t=105$ or $t=110$ ($t2$). The copy numbers from both of these time points are essentially paired data points, enabling the values obtained at $t1$ to be plotted against those obtained at $t2$. Kernel density estimation (KDE) contour plots were generated for each model for each $t2$ value. Finally, the replication rates ($&lambda;$<sub>L</sub> and $&lambda;$<sub>R</sub>) were plotted as function of $w$, i.e. mtDNA copy number, for values around $w$<sub>opt</sub>.<p>
+						<h2>Results</h2>
+						
 
 
 
