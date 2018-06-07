@@ -1,0 +1,90 @@
+<!DOCTYPE HTML>
+<!--
+	Massively by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Summary</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-loading">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Header -->
+					<header id="header">
+						<a href="index.html" class="logo">Home</a>
+					</header>
+
+				<!-- Nav -->
+				<nav id="nav">
+					<ul class="links">
+						<li><a href="index.html">Introduction</a></li>
+						<li><a href="scrna.html">Single-cell RNA-seq data</a></li>
+						<li><a href="modelling.html">Modelling copy number</a></li>
+						<li class="active"><a href="references.html">Summary</a></li>
+						<li><a href="references.html">References</a></li>
+						<li><a href="acknowledgements.html">Glossary</a></li>
+					</ul>
+				</nav>
+
+				<!-- Main -->
+					<div id="main" class="alt">
+
+						<article class="post featured">
+							<header class="major">
+								<h1>Summary</h1></header>
+								<p>Understanding the ways in which mtDNA is regulated in the healthy organellar or cellular state is essential for identifying how diseases manifest themselves in these systems. Varying levels of heteroplasmy and mtDNA copy number have been associated with numerous human diseases <a href=references.html>(Stewart & Chinnery, 2015)</a>. Therefore, an understanding of how diseases lead to copy number and heteroplasmy variations could be used to inform the development new drugs or therapies for mtDNA-associated diseases.
+						</article>
+					<!-- Posts -->
+						<section class="posts">
+							<article>
+								<header>
+									<h2><a href="#">Single-cell RNA-seq</h2></a>
+								</header>
+								<p>Here, scRNA-seq data obtained from cells with a mutant or wild type MERRF allele was analysed. scRNA-seq can quantify heteroplasmy and identify differences in gene expression profiles for mtDNA and nuclear DNA for cells with varying levels of heteroplasmy. Batch effects can confound true biological variation in scRNA-seq datasets so should be removed. Various batch effect removal methods were utilised and compared. ComBat <a href=references.html>(Liu & Markatou, 2016)</a> and GLM <a href=references.html>(Kiselev et al., 2018)</a> were identified as the most effective methods for removing batch effects from the scRNA-seq data set. The results obtained from this analysis highlight the importance of removing batch effects.</p>
+								<ul class="actions">
+									<li><a href=scrna.html class="button">Return to section</a></li>
+								</ul>
+							</article>
+							<article>
+								<header>
+									<h2><a href="#">Mathematical Modelling</h2></a>
+								</header>
+								<p>The LFC and the RR models are mathematically distinct models used for modelling mtDNA population dynamics over time. Being able to distinguish between results obtained from either method is important to identify underlying mechanisms driving changes to mtDNA populations. Here, it has been shown that comparing copy numbers obtained during a short time interval is inadequate for distinguishing either model from the other. Other methods, such as decreasing the time interval or independently estimating parameters, could be attempted.</p>
+								<ul class="actions">
+									<li><a href=modelling.html class="button">Return to section</a></li>
+								</ul>
+							</article>
+
+							</div
+
+
+
+
+				<!-- Copyright -->
+				<div id="copyright">
+					<ul><li>Heather Jackson</li><li>CID: 01402152</li><li>Imperial College London</li>
+						<li>&copy; Design: <a href="https://html5up.net">HTML5 UP</a></li></ul>
+				</div>
+
+
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/skel.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>

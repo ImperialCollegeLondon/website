@@ -38,10 +38,11 @@
 				<nav id="nav">
 					<ul class="links">
 						<li><a href="index.html">Introduction</a></li>
-						<li class="active"><a href="scrna.html">Single-cell RNA-Seq analysis</a></li>
-						<li><a href="modelling.html">Modelling mtDNA populations</a></li>
+						<li class="active"><a href="scrna.html">Single-cell RNA-seq data</a></li>
+						<li><a href="modelling.html">Modelling copy number</a></li>
+						<li><a href="summary.html">Summary</a></li>
 						<li><a href="references.html">References</a></li>
-						<li><a href="acknowledgements.html">Acknowledgements</a></li>
+						<li><a href="acknowledgements.html">Glossary</a></li>
 					</ul>
 				</nav>
 
@@ -169,9 +170,6 @@
 	<p>TMRM consistently accounted for the most variance in the density plots and was the factor by which the data clustered in most PCA plots. As explained in table 2, TMRM is a dye that is sequestered by mitochondria with an active membrane potential. Therefore, TMRM can be used as a measure of mitochondrial function and thus heteroplasmy. The results from these analyses suggest that cells that can sequester different levels of TMRM have different gene expression profiles. Therefore, cells with lower mitochondrial membrane potentials have different gene expression profiles to their counterparts with higher, more intact mitochondrial membrane potentials. For most of the PCA plots, data points clustered according to either high or low TMRM values, i.e. the data points did not cluster further according to mutant or wild type genotype. This suggests that changes in the gene expression profile are cause by not only the MERRF genotype, but other factors such as heteroplasmy and the overall health of the mitochondria.  </p>
 	<p>All methods of batch effect correction except the RUVseq methods led to a reduction in the variance explained by Plate ID, successfully removing batch effects. Although RUVg1 and RUVg10 led to a slight increase in variation explained by Plate ID (fig. 4D-4E), their corresponding PCA plots (fig. 5D-5E) showed clustering of points based on high or low TMRM values, similarly to ComBat and GLM, which suggests that they were able to partially remove batch effects. These conflicting results highlight the importance of carrying out multiple analyses to compare and validate the effectiveness of different methods. </p>
 <p>The RUVs method can only account for variation within replicate groups <a href=references.html>(Risso et al., 2014)</a>. Therefore, variation occurring within a plate can be corrected, but not variation between plates. This explains why there is not a reduction in variance explained by Plate ID in the density plots (fig. 4F-4E) for both RUVs1 and RUVs10. Even though these methods have not fully removed batch effects, in their corresponding PCA plots (fig. 5F-5E) the data points are clustering according to genotype, suggesting that some unwanted variation was removed. </p>
-<h2>Conclusion</h2>
-<p>The aforementioned results obtained from analysing data prior to and after the removal of batch effects highlight the importance of this process in scRNA-seq. GLM and ComBat methods were shown to be the most effective at removing batch effects. The amount of TMRM that can be sequestered by mitochondria, and the reasons for differences in this amount, are an important causal factor of variation shown in gene expression profiles.  </p>
-
 <ul class="actions">
 	<li><a href="#" class="button big">Back to top</a></li>
 </ul>
